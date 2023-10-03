@@ -1,7 +1,8 @@
 import './App.css';
 import { initializeApp  } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js";
+import { useAuthState } from "react-firebase-hooks/auth"
+import { useState, useEffect } from 'react'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -23,28 +24,55 @@ function App() {
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
 
+  const [user, loading] = useAuthState(auth);
+  const [message, setMessage] = useState('')
+  
   function signIn() {
-     //google access token to access Google API
+    //google access token to access Google API
     signInWithPopup(auth, provider).then((result) => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
-
+      
       //signed in user info
       const user = result.user
-      console.log(user);
+      
     }).catch((error) => {
       const errorCode = error.errorCode;
       console.error(error.message);
     })
   }
-
-  function signOut() {
+  
+  function signOutUser() {
     signOut(auth).then(() => {
-      console.log("signed out" + auth);
+      console.log("signed out");
     }).catch((error) => {
       console.error(error);
     })
   }
+
+  useEffect(() => {
+    if (loading) {
+      setMessage('');
+    }
+    else if (user) {
+      //signed in
+      setMessage('Welcome to birding')
+    } else {
+      //signed out
+      setMessage('Bye! Come back again')
+    }
+  }, [user])
+
+  // function changeMessage() {
+  //   auth.onAuthStateChanged(user => {
+  //     if (user) {
+  //       //signedin
+  //       setMessage('Welcome')
+  //     } else {
+  //       setMessage('Bye!')
+  //     }
+  //   })
+  // }
 
   return (
     <div className="App">
@@ -52,8 +80,9 @@ function App() {
         Hello!
         <div className="buttons">
           <button className="btn" onClick={signIn}>Sign In</button>
-          <button className="btn" onClick={signOut}>Sign Out</button>
+          <button className="btn" onClick={signOutUser}>Sign Out</button>
         </div>
+        <div className="message">{message}</div>
       </header>
     </div>
   );

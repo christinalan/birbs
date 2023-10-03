@@ -29,6 +29,11 @@
   color: white;
 }
 
+.message {
+  margin-top: 15px;
+  color: grey;
+  font-size: calc(2vmin);
+}
 /* .App-logo {
   height: 40vmin;
   pointer-events: none;
