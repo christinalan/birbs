@@ -3,6 +3,7 @@ import { initializeApp  } from "https://www.gstatic.com/firebasejs/10.4.0/fireba
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { useState, useEffect } from 'react'
+import BirdData from './ebird.js'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -18,7 +19,6 @@ const firebaseConfig = {
   measurementId: "G-T89L1J1924"
 };
 
-
 function App() {
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
@@ -26,6 +26,8 @@ function App() {
 
   const [user, loading] = useAuthState(auth);
   const [message, setMessage] = useState('')
+
+  const data = BirdData();
   
   function signIn() {
     //google access token to access Google API
@@ -35,7 +37,9 @@ function App() {
       
       //signed in user info
       const user = result.user
-      
+      const name = user.displayName;
+
+      console.log(data);      
     }).catch((error) => {
       const errorCode = error.errorCode;
       console.error(error.message);
@@ -56,22 +60,15 @@ function App() {
     }
     else if (user) {
       //signed in
-      setMessage('Welcome to birding')
+      setMessage(`Welcome to birding ${user.displayName}`)
     } else {
       //signed out
       setMessage('Bye! Come back again')
     }
   }, [user])
 
-  // function changeMessage() {
-  //   auth.onAuthStateChanged(user => {
-  //     if (user) {
-  //       //signedin
-  //       setMessage('Welcome')
-  //     } else {
-  //       setMessage('Bye!')
-  //     }
-  //   })
+  // function getData({data}) {
+  //   <BirdData />
   // }
 
   return (
