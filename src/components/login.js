@@ -1,8 +1,10 @@
-import { initializeApp  } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"
+import { initializeApp  } from "firebase/app";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth"
+import { getFirestore, collection, getDocs } from 'firebase/firestore'
 import { useAuthState } from "react-firebase-hooks/auth"
 import { useState, useEffect } from 'react'
 import LoggedInInfo from "./loggedIn";
+import FirestoneData from '../data/firestoneData';
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -16,10 +18,13 @@ const firebaseConfig = {
     measurementId: "G-T89L1J1924"
   };
 
-  function FirebaseLogin( {onLogin} ) {
+  function FirebaseLogin() {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
+
+    // const db = getFirestore(app);
+    // console.log(db);
 
     const [user, loading] = useAuthState(auth);
     const [message, setMessage] = useState('')
@@ -47,7 +52,6 @@ const firebaseConfig = {
         })
       }
 
-
   useEffect(() => {
     if (loading) {
       setMessage('');
@@ -60,7 +64,6 @@ const firebaseConfig = {
           Welcome to birding, {user.displayName}
         </p>
         <LoggedInInfo />
-        {/* <BirdData /> */}
       </div>)
     } else {
       //signed out
@@ -68,16 +71,20 @@ const firebaseConfig = {
     }
   }, [user])
 
+  //setting up firestore
+
+
     return (
         <div className="App">
-        <header className="App-header">
-            Birds Today!
-            <div className="buttons">
-            <button className="btn" onClick={signIn}>Sign In</button>
-            <button className="btn" onClick={signOutUser}>Sign Out</button>
-            </div>
-            <div className="message">{message}</div>
-        </header>
+          <header className="App-header">
+              Birds Today!
+              <div className="buttons">
+              <button className="btn" onClick={signIn}>Sign In</button>
+              <button className="btn" onClick={signOutUser}>Sign Out</button>
+              </div>
+              <div className="message">{message}</div>
+          </header>
+          {/* <FirestoneData firestoneApp={app}/> */}
         </div>
     );
   }

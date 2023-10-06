@@ -10,8 +10,6 @@ function ShowBirdData({birdData}) {
         return <div>Data is loading...</div>
     }
 
-    console.log(birdData);
-
     return (
         <div>
             <p className="bird-data">{birdNames}</p>

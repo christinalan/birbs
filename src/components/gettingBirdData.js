@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import  ShowBirdData  from './showBirdData'
+import FirestoneData from '../data/firestoneData';
 
 let myHeaders = new Headers();
 myHeaders.append("X-eBirdApiToken", "fvuoeq8d9dt2");
@@ -48,6 +49,7 @@ function BirdData({selectedRegion}) {
             <div>
                   <h2>Birds spotted recently in {selectedRegion.name}</h2>
                   <ShowBirdData birdData={limitedData}/>
+                  <FirestoneData birdData={limitedData}/>
             </div>
         ): (<p>Loading...</p>)
         }
