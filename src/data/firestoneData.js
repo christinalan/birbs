@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { initializeApp  } from "firebase/app";
+import { useAuthState } from "react-firebase-hooks/auth"
 import { getFirestore, setDoc, addDoc, collection, getDocs } from 'firebase/firestore'
 
-function FirestoneData({app, birdData}) {
+function FirestoneData({app, user, birdData}) {
     const db = getFirestore(app);
 
     // const birdObject = birdData.reduce((obj, item) => {

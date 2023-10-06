@@ -84,7 +84,7 @@ const firebaseConfig = {
               </div>
               <div className="message">{message}</div>
           </header>
-          {/* <FirestoneData firestoneApp={app}/> */}
+          {/* <FirestoneData user={user}/> */}
         </div>
     );
   }
