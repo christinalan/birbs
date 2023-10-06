@@ -30,9 +30,16 @@
 }
 
 .message {
-  margin-top: 15px;
   color: grey;
   font-size: calc(2vmin);
+}
+
+.region-dropdown {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 /* .App-logo {
   height: 40vmin;
