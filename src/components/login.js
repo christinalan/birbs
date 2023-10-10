@@ -3,7 +3,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/
 import { useAuthState } from "react-firebase-hooks/auth"
 import { useState, useEffect } from 'react'
 import LoggedInInfo from "./loggedIn.tsx";
-import FirestoneData from '../data/firestoneData';
+import FirestoneData from '../data/firestoneData.tsx';
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import  ShowBirdData  from './showBirdData.tsx'
-import FirestoneData from '../data/firestoneData';
+import FirestoneData from '../data/firestoneData.tsx';
 
 let myHeaders = new Headers();
 myHeaders.append("X-eBirdApiToken", "fvuoeq8d9dt2");

@@ -1,19 +1,19 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { initializeApp  } from "firebase/app";
 import { useAuthState } from "react-firebase-hooks/auth"
 import { getFirestore, setDoc, addDoc, collection, getDocs } from 'firebase/firestore'
 
-function FirestoneData({app, birdData}) {
-    const db = getFirestore(app);
+interface BirdData {
+    comName: string
+}
 
-    // const birdObject = birdData.reduce((obj, item) => {
-    //    for (const key in item) {
-    //         if (item.hasOwnProperty(key)) {
-    //             obj[key] = item[key];
-    //         }
-    //    }
-    //     return obj;
-    // }, {});
+interface FirestoneDataProps {
+    app: ReturnType<typeof initializeApp>,
+    birdData: BirdData[];
+}
+
+function FirestoneData({app, birdData}: FirestoneDataProps) {
+    const db = getFirestore(app);
 
     const storeFirestone = async () => {
         try {
