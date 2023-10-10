@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import  ShowBirdData  from './showBirdData'
+import  ShowBirdData  from './showBirdData.tsx'
 import FirestoneData from '../data/firestoneData';
 
 let myHeaders = new Headers();
