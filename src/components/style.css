@@ -1,7 +1,50 @@
+
 h2 {
     color: white;
 }
 
+.region-dropdown select {
+    height: 2rem;
+}
+
 .bird-data {
  margin: 10px 75px;
+}
+
+.bird-container {
+    width: 80vw;
+}
+
+.bird-list {
+    width: 80vw;
+    cursor: pointer;
+    text-align: left;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    padding-bottom: 3rem;
+    
+}
+
+.bird-list p:hover {
+    color: green;
+}
+
+.bird-fact {
+    background-color: rgb(180, 180, 180);
+    border-radius: 5px;
+    color: black;
+    padding: 5px 20px;
+}
+
+.bird-fact h3 {
+    margin-bottom: 5px;
+}
+
+.bird-fact p {
+    margin-top: 0;
+}
+
+.bird-image {
+    max-width: 400px;
+    padding-bottom: 20px;
 }

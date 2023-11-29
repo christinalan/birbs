@@ -32,7 +32,7 @@ function FirestoneData({app, birdData}: FirestoneDataProps) {
 
     useEffect(() => {
         if (birdData.length > 0) {
-            storeFirestone();
+            // storeFirestone();
         }
 
     },[birdData])
