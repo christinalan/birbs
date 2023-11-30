@@ -1,5 +1,5 @@
 import { initializeApp  } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth"
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, signOut } from "firebase/auth"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { useState, useEffect } from 'react'
 import LoggedInInfo from "./loggedIn.tsx";
@@ -60,7 +60,7 @@ const firebaseConfig = {
       setMessage(
           <div>
             <p>Welcome to birding, {user.displayName}</p>
-            <LoggedInInfo />
+            {/* <LoggedInInfo /> */}
           </div>)
     } else {
       //signed out
@@ -74,13 +74,14 @@ const firebaseConfig = {
     return (
         <div className="App">
           <header className="App-header">
-              Birds Today!
-              <div className="buttons">
+              <h3 style={{marginBottom: "0.5em"}}>Birds Today!</h3>
+              {/* <div className="buttons">
               <button className="btn" onClick={signIn}>Sign In</button>
               <button className="btn" onClick={signOutUser}>Sign Out</button>
-              </div>
-              <div className="message">{message}</div>
+              </div>*/}
+            <div className="message"> <LoggedInInfo /></div> 
           </header>
+  
         </div>
     );
   }
