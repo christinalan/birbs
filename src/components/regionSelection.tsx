@@ -3,19 +3,26 @@ import USregionData from '../data/USregions.json';
 import CAregionData from '../data/CAregions.json'
 
 interface RegionSelectionProps {
-    onSelect: (selectedRegion: Region | null) => void;
+    onSelect: (selectedRegion: RegionObject | null) => void;
 }
 
 interface Region {
-    abbreviation: string,
+    abbreviation: string;
     name: string;
 }
 
+interface RegionObject {
+    country: string;
+    abbreviation: string | any;
+    name: string | any;
+}
 
 const RegionSelection: FC<RegionSelectionProps> = ({onSelect}) => {
-    const [country, setCountry] = useState("");
+    const [selectedCountry, setSelectedCountry] = useState("");
     const [regions, setRegions] = useState<Region[]>([]);
-    const [regionNames, setRegionNames] = useState<HTMLOptionElement[]>();
+    const [selectedRegion, setSelectedRegion] = useState<string | any>("");
+    const [selectedLocation, setSelectedLocation] = useState<RegionObject | null>(null)
+
     //setting US regions
     const usRegions: Region[] = USregionData.data;
     const caRegions: Region[] = CAregionData.data;
@@ -23,31 +30,56 @@ const RegionSelection: FC<RegionSelectionProps> = ({onSelect}) => {
     const handleCountryChange = (event: ChangeEvent<HTMLSelectElement>) => {
         event.preventDefault();
         const selectedCountry = event.target.value;
-        setCountry(selectedCountry);
+        setSelectedCountry(selectedCountry);
     }
     
+    //will set the regions that will populate the region selection element
     useEffect(() => {
-        if (country === "US") {
+        if (selectedCountry === "US") {
             setRegions(usRegions)
             
-        } else if (country === "CA") {
+        } else if (selectedCountry === "CA") {
             setRegions(caRegions);
         }
-    }, [country])
+    }, [selectedCountry])
     
     
-
-    
+    //handles the region selection (happens after country is set)
     const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
         event.preventDefault();
         const selectedOption = event.target.value;
-        const selectedRegion = usRegions.find((region: Region) => region.name === selectedOption)
-        onSelect(selectedRegion || null)
+        setSelectedRegion(selectedOption);
+
     }
+        
+    useEffect(() => {
+        const fetchData = async () => {
+            const currentSelectedRegion = regions.find((region: Region) => region.name === selectedRegion)
+            
+            //setting function form of state, state is updated based on the latest state.
+            setSelectedLocation((prevLocation) => ({
+                ...prevLocation,
+                country: selectedCountry,
+                abbreviation: currentSelectedRegion?.abbreviation,
+                name: currentSelectedRegion?.name
+            }))
+        }
+        fetchData()
+       
+    }, [selectedRegion, regions, selectedCountry])
+    
+
+    useEffect(() => {
+        //this was the only conditional that worked to stop all onSelects until the location was set
+        if (selectedLocation?.abbreviation !== undefined) {
+            onSelect(selectedLocation || null)
+        }
+        
+    }, [selectedLocation])
 
     return (
         <div className="region-dropdown">
-            <select name="countries" value={country} onChange={handleCountryChange}>
+            <select name="countries" value={selectedCountry} onChange={handleCountryChange}>
                 <option value="none">Please select a country</option>
                 <option value="US">United States</option>
                 <option value="CA">Canada</option>

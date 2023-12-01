@@ -20,7 +20,7 @@ function ShowBirdData({birdData}: ShowBirdDataProps) {
 
     if (!birdData) {
         return <div>Data is loading...</div>
-    }
+    } 
 
     const getBirdName = (bird: Bird) => {
         setBirdName(bird.comName);

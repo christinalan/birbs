@@ -2,15 +2,17 @@ import { useState } from 'react'
 import RegionSelection from './regionSelection.tsx'
 import BirdData from './gettingBirdData.js';
 
-interface Region {
+
+interface Location {
+    country: string,
     abbreviation: string,
     name: string;
 }
 
 function LoggedInInfo() {
-    const [selectedRegion, setSelectedRegion] = useState<Region | null>(null);
+    const [selectedRegion, setSelectedRegion] = useState<Location | null>(null);
 
-    const handleRegionChange = (selectedRegion: Region | null) => {
+    const handleRegionChange = (selectedRegion: Location | null) => {
         setSelectedRegion(selectedRegion);
     }
 

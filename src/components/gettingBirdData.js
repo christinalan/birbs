@@ -19,9 +19,9 @@ function BirdData({selectedRegion}) {
 
     const fetchData = async () => {
         try {
-            const response = await fetch(`https://api.ebird.org/v2/data/obs/US-${selectedRegion.abbreviation}/recent`, requestOptions)
+            const response = await fetch(`https://api.ebird.org/v2/data/obs/${selectedRegion.country}-${selectedRegion.abbreviation}/recent`, requestOptions)
             const newData = await response.json();
-              // const cappedData = newData.slice(0, 50);
+            
             //ensuring data is in the data array before setting the data
             if (Array.isArray(newData)) {
                 setData(newData);
