@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&display=swap');
 
 .bird-data {
  margin: 10px 75px;
 }
 
 .bird-data-container h2 {
-    color:  rgb(221, 221, 221);
+    color: #979A07;
+    font-family: 'Cardo', serif;
+    font-size: 1.5rem;
 }
 
 .bird-container {
@@ -27,18 +29,23 @@
 }
 
 .bird-list p:hover {
-    color: green;
+    color: #979A07
 }
 
 .bird-fact {
-    background-color: rgb(180, 180, 180);
+    font-family: 'Yantramanav', sans-serif;
+    font-weight: 300;
+    font-size: 1.1rem;
+    background-color: #242700;
     border-radius: 5px;
-    color: black;
+    color: white;
     padding: 5px 20px;
 }
 
 .bird-fact h3 {
+    
     margin-bottom: 5px;
+    font-size: 1.5rem;
 }
 
 .bird-fact p {

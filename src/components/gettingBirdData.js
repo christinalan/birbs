@@ -63,7 +63,7 @@ function BirdData({selectedRegion}) {
     <div>
         {limitedData ? (
             <div className="bird-data-container">
-                  <h2>Birds spotted recently in {selectedRegion.name ? selectedRegion.name : selectedRegion.abbreviation}</h2>
+                  <h2>Birds spotted recently in <br />{selectedRegion.name ? selectedRegion.name : selectedRegion.abbreviation}</h2>
                   <ShowBirdData birdData={limitedData}/>
                   <FirestoneData birdData={limitedData}/>
             </div>
