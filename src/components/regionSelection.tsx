@@ -13,14 +13,9 @@ interface Region {
 }
 
 interface RegionObject {
-    country: string;
+    country: string | any;
     abbreviation: string | any;
     name: string | any;
-}
-
-interface CountryObject {
-    countryAb: string | any;
-    countryName: string | any;
 }
 
 const RegionSelection: FC<RegionSelectionProps> = ({onSelect}) => {
@@ -80,7 +75,7 @@ const RegionSelection: FC<RegionSelectionProps> = ({onSelect}) => {
                 setSelectedLocation((prevLocation) => ({
                     ...prevLocation,
                     country: selectedCountry,
-                    abbreviation: currentSelectedCountry?.abbreviation,
+                    abbreviation: currentSelectedCountry?.name, // confusing but switching this to reflect the actual name of the country if there's only country
                     name: ''
                 }))
                 
