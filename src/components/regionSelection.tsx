@@ -1,6 +1,7 @@
 import { useState, useEffect, ChangeEvent, FC } from 'react';
 import USregionData from '../data/USregions.json';
-import CAregionData from '../data/CAregions.json'
+import CAregionData from '../data/CAregions.json';
+import countryData from '../data/countries.json';
 
 interface RegionSelectionProps {
     onSelect: (selectedRegion: RegionObject | null) => void;
@@ -17,15 +18,22 @@ interface RegionObject {
     name: string | any;
 }
 
+interface CountryObject {
+    countryAb: string | any;
+    countryName: string | any;
+}
+
 const RegionSelection: FC<RegionSelectionProps> = ({onSelect}) => {
+    const [countries, setCountries] = useState<Region[]>(countryData.data);
     const [selectedCountry, setSelectedCountry] = useState("");
-    const [regions, setRegions] = useState<Region[]>([]);
+    const [regions, setRegions] = useState<Region[] | null>([]);
     const [selectedRegion, setSelectedRegion] = useState<string | any>("");
     const [selectedLocation, setSelectedLocation] = useState<RegionObject | null>(null)
 
     //setting US regions
     const usRegions: Region[] = USregionData.data;
     const caRegions: Region[] = CAregionData.data;
+    // const allCountries: Region[] = countryData.data;
     
     const handleCountryChange = (event: ChangeEvent<HTMLSelectElement>) => {
         event.preventDefault();
@@ -40,8 +48,10 @@ const RegionSelection: FC<RegionSelectionProps> = ({onSelect}) => {
             
         } else if (selectedCountry === "CA") {
             setRegions(caRegions);
+        } else {
+            setRegions(null);
         }
-    }, [selectedCountry])
+    }, [selectedCountry, caRegions, usRegions])
     
     
     //handles the region selection (happens after country is set)
@@ -54,15 +64,28 @@ const RegionSelection: FC<RegionSelectionProps> = ({onSelect}) => {
         
     useEffect(() => {
         const fetchData = async () => {
-            const currentSelectedRegion = regions.find((region: Region) => region.name === selectedRegion)
+            if (regions !== null) {
+                //matching the selected Region with the regions data
+                const currentSelectedRegion = regions.find((region: Region) => region.name === selectedRegion)
+                //setting function form of state, state is updated based on the latest state.
+                setSelectedLocation((prevLocation) => ({
+                    ...prevLocation,
+                    country: selectedCountry,
+                    abbreviation: currentSelectedRegion?.abbreviation,
+                    name: currentSelectedRegion?.name
+                }))
+            } else {
+                const currentSelectedCountry = countries.find((country: Region) => country.abbreviation === selectedCountry)
+   
+                setSelectedLocation((prevLocation) => ({
+                    ...prevLocation,
+                    country: selectedCountry,
+                    abbreviation: currentSelectedCountry?.abbreviation,
+                    name: ''
+                }))
+                
+            }
             
-            //setting function form of state, state is updated based on the latest state.
-            setSelectedLocation((prevLocation) => ({
-                ...prevLocation,
-                country: selectedCountry,
-                abbreviation: currentSelectedRegion?.abbreviation,
-                name: currentSelectedRegion?.name
-            }))
         }
         fetchData()
        
@@ -74,22 +97,23 @@ const RegionSelection: FC<RegionSelectionProps> = ({onSelect}) => {
         if (selectedLocation?.abbreviation !== undefined) {
             onSelect(selectedLocation || null)
         }
-        
     }, [selectedLocation])
 
     return (
         <div className="region-dropdown">
             <select name="countries" value={selectedCountry} onChange={handleCountryChange}>
                 <option value="none">Please select a country</option>
-                <option value="US">United States</option>
-                <option value="CA">Canada</option>
+                {countries.map((country) => (
+                    <option key={country.abbreviation} value={country.abbreviation}>{country.name}</option>
+                ))}
             </select>
-                <select name="regions" onChange={handleSelectChange}>
+                {regions && <select name="regions" onChange={handleSelectChange}>
                     <option value="none">Please select a region</option>
                     {regions.map((region: Region) => (
                         <option key={region.abbreviation} value={region.name}>{region.name}</option>
                     ))}
-                </select>
+                </select>}
+               
         </div>
     )
 }

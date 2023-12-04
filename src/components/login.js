@@ -74,7 +74,7 @@ const firebaseConfig = {
     return (
         <div className="App">
           <header className="App-header">
-              <h3 style={{marginBottom: "0.5em"}}>Birds Today!</h3>
+              <h3 className="bird-header">Birds Today!</h3>
               {/* <div className="buttons">
               <button className="btn" onClick={signIn}>Sign In</button>
               <button className="btn" onClick={signOutUser}>Sign Out</button>

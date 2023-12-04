@@ -1,27 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
 
-h2 {
-    color: white;
-}
-
-.region-dropdown select {
-    height: 2rem;
-}
 
 .bird-data {
  margin: 10px 75px;
 }
 
+.bird-data-container h2 {
+    color:  rgb(221, 221, 221);
+}
+
 .bird-container {
+    margin-top: 1rem;
     width: 80vw;
 }
 
 .bird-list {
+    font-family: 'Yantramanav', sans-serif;
     width: 80vw;
     cursor: pointer;
     text-align: left;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
     padding-bottom: 3rem;
+    color: rgb(198, 198, 198);
     
 }
 
@@ -47,4 +48,18 @@ h2 {
 .bird-image {
     max-width: 400px;
     padding-bottom: 20px;
+}
+
+@media (orientation: portrait) {
+    .bird-list {
+        font-size: 1.3rem;
+        width: 100vw;
+        cursor: pointer;
+        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+        
+    }
+
+    .bird-image {
+        max-width: 90%;
+    }
 }

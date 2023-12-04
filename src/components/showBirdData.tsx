@@ -22,6 +22,7 @@ function ShowBirdData({birdData}: ShowBirdDataProps) {
         return <div>Data is loading...</div>
     } 
 
+
     const getBirdName = (bird: Bird) => {
         setBirdName(bird.comName);
         setClicked(true);
@@ -33,12 +34,11 @@ function ShowBirdData({birdData}: ShowBirdDataProps) {
             {clicked ? <GetBirdFact birdNameData={birdName}/> : null}
 
         <div className="bird-list">
-            {birdData.map((bird) => (
+            {birdData ? birdData.map((bird) => (
                 <div key={bird.comName}>
                 <p onClick={() => getBirdName(bird)} >{bird.comName}</p>
                 </div>
-            ))}
- 
+            )) : <p>No birds spotted here recently &#128532;</p>}
         </div>
         </div>
     )

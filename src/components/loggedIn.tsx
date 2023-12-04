@@ -12,6 +12,7 @@ interface Location {
 function LoggedInInfo() {
     const [selectedRegion, setSelectedRegion] = useState<Location | null>(null);
 
+    //selectedRegion handles both regions for US or Canada as well as regions for all other countries (the country itself is the region);
     const handleRegionChange = (selectedRegion: Location | null) => {
         setSelectedRegion(selectedRegion);
     }
