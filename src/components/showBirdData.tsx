@@ -26,6 +26,9 @@ function ShowBirdData({birdData}: ShowBirdDataProps) {
     const getBirdName = (bird: Bird) => {
         setBirdName(bird.comName);
         setClicked(true);
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0;
+
     }
     
     return (
