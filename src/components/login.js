@@ -1,10 +1,9 @@
 import { initializeApp  } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth"
-import { getFirestore, collection, getDocs } from 'firebase/firestore'
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, signOut } from "firebase/auth"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { useState, useEffect } from 'react'
-import LoggedInInfo from "./loggedIn";
-import FirestoneData from '../data/firestoneData';
+import LoggedInInfo from "./loggedIn.tsx";
+import FirestoneData from '../data/firestoneData.tsx';
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -23,34 +22,34 @@ const firebaseConfig = {
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
 
-    // const db = getFirestore(app);
-    // console.log(db);
-
     const [user, loading] = useAuthState(auth);
     const [message, setMessage] = useState('')
+    const [isSignedIn, setIsSignedIn] = useState(false);
 
-    function signIn() {
-        //google access token to access Google API
-        signInWithPopup(auth, provider).then((result) => {
-          const credential = GoogleAuthProvider.credentialFromResult(result);
-          const token = credential.accessToken;
-          
-          //signed in user info
-          const user = result.user
-    
-        }).catch((error) => {
-          const errorCode = error.errorCode;
-          console.error(error.message);
-        })
+    const signIn = async () => {
+      try {
+        const result = await signInWithPopup(auth, provider);
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        //signed in user info
+        const user = result.user
+        setIsSignedIn(true);
+      } catch (error) {
+        const errorCode = error.errorCode;
+        console.error(error.message);
       }
+    }
+
+    const signOutUser = async () => {
+      try {
+        await signOut(auth);
+        setIsSignedIn(false);
+        console.log("signed out");
+      } catch (error) {
+        console.error(error);
+      }
+    }
       
-      function signOutUser() {
-        signOut(auth).then(() => {
-          console.log("signed out");
-        }).catch((error) => {
-          console.error(error);
-        })
-      }
 
   useEffect(() => {
     if (loading) {
@@ -59,12 +58,10 @@ const firebaseConfig = {
     else if (user) {
       //signed in
       setMessage(
-      <div>
-        <p>
-          Welcome to birding, {user.displayName}
-        </p>
-        <LoggedInInfo />
-      </div>)
+          <div>
+            <p>Welcome to birding, {user.displayName}</p>
+            {/* <LoggedInInfo /> */}
+          </div>)
     } else {
       //signed out
       setMessage('Bye! Come back again')
@@ -77,14 +74,14 @@ const firebaseConfig = {
     return (
         <div className="App">
           <header className="App-header">
-              Birds Today!
-              <div className="buttons">
+              <h3 className="bird-header">Birds Today!</h3>
+              {/* <div className="buttons">
               <button className="btn" onClick={signIn}>Sign In</button>
               <button className="btn" onClick={signOutUser}>Sign Out</button>
-              </div>
-              <div className="message">{message}</div>
+              </div>*/}
+            <div className="message"> <LoggedInInfo /></div> 
           </header>
-          {/* <FirestoneData user={user}/> */}
+  
         </div>
     );
   }

@@ -1,7 +1,76 @@
-h2 {
-    color: white;
-}
+@import url('https://fonts.googleapis.com/css2?family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&display=swap');
 
 .bird-data {
  margin: 10px 75px;
+}
+
+.bird-data-container h2 {
+    color: #979A07;
+    font-family: 'Cardo', serif;
+    font-size: 1.5rem;
+}
+
+.bird-container {
+    margin-top: 1rem;
+    width: 80vw;
+}
+
+.bird-list {
+    font-family: 'Yantramanav', sans-serif;
+    width: 80vw;
+    cursor: pointer;
+    text-align: left;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    padding-bottom: 3rem;
+    color: rgb(198, 198, 198);
+    
+}
+
+.bird-list p:hover {
+    color: #979A07
+}
+
+.bird-fact {
+    font-family: 'Yantramanav', sans-serif;
+    font-weight: 300;
+    font-size: 1.1rem;
+    background-color: #242700;
+    border-radius: 5px;
+    color: white;
+    padding: 5px 20px;
+}
+
+.bird-fact h3 {
+    
+    margin-bottom: 5px;
+    font-size: 1.5rem;
+}
+
+.bird-fact p {
+    margin-top: 0;
+}
+
+.bird-image {
+    max-width: 400px;
+    padding-bottom: 20px;
+}
+
+@media (orientation: portrait) {
+    .bird-data-container h2 {
+        width: 90%;
+    }
+
+    .bird-list {
+        font-size: 1.3rem;
+        width: 90%;
+        cursor: pointer;
+        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+        
+    }
+
+    .bird-image {
+        max-width: 90%;
+    }
 }

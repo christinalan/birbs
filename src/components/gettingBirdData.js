@@ -1,6 +1,7 @@
+import './style.css';
 import { useState, useEffect } from 'react'
-import  ShowBirdData  from './showBirdData'
-import FirestoneData from '../data/firestoneData';
+import  ShowBirdData  from './showBirdData.tsx'
+import FirestoneData from '../data/firestoneData.tsx';
 
 let myHeaders = new Headers();
 myHeaders.append("X-eBirdApiToken", "fvuoeq8d9dt2");
@@ -19,16 +20,30 @@ function BirdData({selectedRegion}) {
 
     const fetchData = async () => {
         try {
-            const response = await fetch(`https://api.ebird.org/v2/data/obs/US-${selectedRegion.abbreviation}/recent`, requestOptions)
-            const newData = await response.json();
-              // const cappedData = newData.slice(0, 50);
-            //ensuring data is in the data array before setting the data
-            if (Array.isArray(newData)) {
-                setData(newData);
-                //slice it to just return 50 results
-                setLimitedData(newData.slice(0, 50));
+            if (selectedRegion.name !== '') {
+                const response = await fetch(`https://api.ebird.org/v2/data/obs/${selectedRegion.country}-${selectedRegion.abbreviation}/recent`, requestOptions)
+                const newData = await response.json();
+    
+                //ensuring data is in the data array before setting the data
+                if (Array.isArray(newData)) {
+                    setData(newData);
+                    //slice it to just return 50 results
+                    setLimitedData(newData.slice(0, 50));
+                }
+
+            } else {
+                const response = await fetch(`https://api.ebird.org/v2/data/obs/${selectedRegion.country}/recent`, requestOptions)
+                const newData = await response.json();
+
+                if (Array.isArray(newData)) {
+                    setData(newData);
+                    //slice it to just return 50 results
+                    setLimitedData(newData.slice(0, 50));
+
+                } 
             }
-        
+
+
         }
         catch (error) {
             console.error('Error fetching data:', error);
@@ -40,14 +55,15 @@ function BirdData({selectedRegion}) {
 
             fetchData();
         }
+        console.log(selectedRegion);
     }, [selectedRegion])
 
 
    return (
     <div>
         {limitedData ? (
-            <div>
-                  <h2>Birds spotted recently in {selectedRegion.name}</h2>
+            <div className="bird-data-container">
+                  <h2>Birds spotted recently in {selectedRegion.name ? selectedRegion.name : selectedRegion.abbreviation}</h2>
                   <ShowBirdData birdData={limitedData}/>
                   <FirestoneData birdData={limitedData}/>
             </div>
