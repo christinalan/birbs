@@ -9,15 +9,9 @@ body {
 
 .bg-image {
   background-image: url("./assets/bird.png");
-  background-repeat: no-repeat;
-  background-size: 75%;
+  background-size: contain;
 }
 
-.main-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
 
 .buttons {
   display: flex;

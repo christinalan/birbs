@@ -74,14 +74,15 @@ const firebaseConfig = {
 
     return (
         <div className="max-h-screen">
-          <div className="main-container flex flex-col items-center sm:items-start sm:content-center sm:px-5">
-            <div className="header text-3xl font-normal">
-              <h3 className="text-3xl font-medium mt-10 mb-3">Biirrrrrbs of today</h3>
+            <img className="fixed opacity-20 top-24 sm:top-8 sm:ml-20 sm:mt-10" src={bird} alt="image of a bird"/>
+          <div className="main-container flex flex-col items-center sm:items-start sm:content-center sm:px-10">
+            <div className="header text-center sm:text-left">
+              <h3 className="text-3xl font-medium mt-10 mb-2 sm:ml-1">Birds of Today!</h3>
+              <p className="max-w-md sm: max-w-3xl mb-5 px-5 sm:px-1">Discover recently seen birds in any region of the world! Courtesy of Cornell eBird and Wikipedia.</p>
             </div>
               <div className="message z-10"> <LoggedInInfo /></div> 
             </div>
 
-            {/* <img className="fixed opacity-20 ml-20" src={bird} alt="image of a bird"/> */}
             {/* <div className="buttons">
             <button className="btn" onClick={signIn}>Sign In</button>
             <button className="btn" onClick={signOutUser}>Sign Out</button>
