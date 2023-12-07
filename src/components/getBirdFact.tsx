@@ -102,14 +102,14 @@ const ShowBirdFact = ({birdNameData}: BirdNameProps) => {
     
 
     if (loading) {
-        return <p>Loading...</p>;
+        return <p className="ml-5">Loading...</p>;
       }
 
     return (
-        <div className="bird-fact">
-            <h3>{birdName} Fact</h3>
-            <p>{randomFact}</p>
-            {image !== "" ? <img className="bird-image" src={image} alt={`picture of ${birdName}`}></img> : <p>No image found</p>}
+        <div className="bird-fact bg-sky-100 max-w-2xl rounded-3xl px-10 py-5 mt-0 ml-10 overflow-scroll">
+            <h3 className="font-normal text-2xl uppercase pt-3">{birdName} Fact</h3>
+            <p className="font-light mt-2">{randomFact}</p>
+            {image !== "" ? <img className="bird-image max-w-lg mt-5 pb-5" src={image} alt={`picture of ${birdName}`}></img> : <p>No image found</p>}
             
         </div>
     )

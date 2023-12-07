@@ -3,6 +3,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, signO
 import { useAuthState } from "react-firebase-hooks/auth"
 import { useState, useEffect } from 'react'
 import LoggedInInfo from "./loggedIn.tsx";
+import bird from "../assets/bird.png"
 import FirestoneData from '../data/firestoneData.tsx';
 
 // Your web app's Firebase configuration
@@ -72,17 +73,20 @@ const firebaseConfig = {
 
 
     return (
-        <div className="App">
-          <header className="App-header">
-              <h3 className="bird-header">Birds Today!</h3>
+        <body className="min-h-screen min-w-full bg-slate-100">
+          <div className="font-normal text-3xl ml-10 flex ">
+            <div className="flex flex-col justify-evenly g-10 ">
+              <h3 className="text-base; font-medium mt-10 ml-7 mb-3">Birds Today!</h3>
               {/* <div className="buttons">
               <button className="btn" onClick={signIn}>Sign In</button>
               <button className="btn" onClick={signOutUser}>Sign Out</button>
               </div>*/}
-            <div className="message"> <LoggedInInfo /></div> 
-          </header>
+              <div className="message z-10"> <LoggedInInfo /></div> 
+            </div>
+            </div>
+            {/* <img className="fixed opacity-20 ml-20" src={bird} alt="image of a bird"/> */}
   
-        </div>
+        </body>
     );
   }
 

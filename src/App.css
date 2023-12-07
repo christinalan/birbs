@@ -2,32 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&display=swap');
 
 body {
-  background-color: black;
-  font-family: 'Yantramanav', sans-serif;
-}
-
-.App {
-  text-align: center;
-}
-
-.App-header {
+  /* font-family: 'Yantramanav', sans-serif; */
   font-family: 'Cardo', serif;
-  font-weight: 400;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 3vmin);
-  color: rgb(34, 34, 34);
+  color: #1B7A9E;
 }
 
-.bird-header {
-  border-radius: 1.5rem;
-  padding: 1.5rem 2.5rem;
-  margin-bottom: 0rem;
-  color: white;
+
+.bg-image {
+  background-image: url("./assets/bird.png");
+  background-repeat: no-repeat;
+  background-size: 75%;
 }
+
 
 .buttons {
   display: flex;
@@ -46,26 +32,20 @@ body {
 }
 
 .message {
-  color: white;
+  /* font-family: 'Yantramanav', sans-serif; */
   font-size: calc(2vmin);
 }
 
 .region-dropdown {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
   gap: 10px;
 }
 
 .region-dropdown select {
-  font-size: 1rem;
   height: 3rem;
-  background-color: black;
-  border-radius: 1rem;
-  max-width: 100%;
+  background-color: #1B7A9E;
+  border-radius: 0rem;
+  
   color: white;
-  padding: 0 2rem;
   font-family: 'Yantramanav', sans-serif;
 }
 
