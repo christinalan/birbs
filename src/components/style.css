@@ -24,7 +24,7 @@
 
 .bird-fact {
     font-family: 'Yantramanav', sans-serif;
-    max-height: 80vh
+    /* max-height: 80vh */
 }
 
 ::-webkit-scrollbar {
