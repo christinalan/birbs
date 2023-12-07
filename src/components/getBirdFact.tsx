@@ -106,10 +106,10 @@ const ShowBirdFact = ({birdNameData}: BirdNameProps) => {
       }
 
     return (
-        <div className="bird-fact bg-sky-100 max-w-2xl rounded-3xl px-10 py-5 mt-0 ml-10 overflow-scroll">
+        <div className="bird-fact bg-sky-100 max-w-sm sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl rounded-xl px-10 py-5 mt-2 overflow-y-scroll">
             <h3 className="font-normal text-2xl uppercase pt-3">{birdName} Fact</h3>
             <p className="font-light mt-2">{randomFact}</p>
-            {image !== "" ? <img className="bird-image max-w-lg mt-5 pb-5" src={image} alt={`picture of ${birdName}`}></img> : <p>No image found</p>}
+            {image !== "" ? <img className="bird-image max-w-xs mt-5 pb-5" src={image} alt={`picture of ${birdName}`}></img> : <p>No image found</p>}
             
         </div>
     )

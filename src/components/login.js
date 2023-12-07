@@ -73,20 +73,21 @@ const firebaseConfig = {
 
 
     return (
-        <body className="min-h-screen min-w-full bg-slate-100">
-          <div className="font-normal text-3xl ml-10 flex ">
-            <div className="flex flex-col justify-evenly g-10 ">
-              <h3 className="text-base; font-medium mt-10 ml-7 mb-3">Birds Today!</h3>
-              {/* <div className="buttons">
-              <button className="btn" onClick={signIn}>Sign In</button>
-              <button className="btn" onClick={signOutUser}>Sign Out</button>
-              </div>*/}
+        <div className="max-h-screen">
+          <div className="main-container flex flex-col items-center sm:items-start sm:content-center sm:px-5">
+            <div className="header text-3xl font-normal">
+              <h3 className="text-3xl font-medium mt-10 mb-3">Biirrrrrbs of today</h3>
+            </div>
               <div className="message z-10"> <LoggedInInfo /></div> 
             </div>
-            </div>
+
             {/* <img className="fixed opacity-20 ml-20" src={bird} alt="image of a bird"/> */}
+            {/* <div className="buttons">
+            <button className="btn" onClick={signIn}>Sign In</button>
+            <button className="btn" onClick={signOutUser}>Sign Out</button>
+            </div>*/}
   
-        </body>
+        </div>
     );
   }
 

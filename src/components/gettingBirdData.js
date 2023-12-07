@@ -16,6 +16,7 @@ function BirdData({selectedRegion}) {
 
     const [data, setData] = useState([]);
     const [limitedData, setLimitedData] = useState([]);
+    const [loading, setLoading] = useState(false);
 
 
     const fetchData = async () => {
@@ -47,6 +48,8 @@ function BirdData({selectedRegion}) {
         }
         catch (error) {
             console.error('Error fetching data:', error);
+        } finally {
+            setLoading(true);
         }
     }
 
@@ -61,13 +64,13 @@ function BirdData({selectedRegion}) {
 
    return (
     <div>
-        {limitedData ? (
-            <div className="bird-data my-8 px-1 py-1 ">
-                  <h2 className="text-slate-700 text-xl font-medium max-w-xs">Spotted recently in <br />{selectedRegion.name ? selectedRegion.name : selectedRegion.abbreviation}: </h2>
+        {loading ? (
+            <div className="bird-data my-5 px-1 py-1 flex flex-col items-center sm:items-start">
+                  <h2 className="text-slate-700 text-xl font-medium max-w-xs lg:max-w-2xl">Spotted recently in {selectedRegion.name ? selectedRegion.name : selectedRegion.abbreviation}: </h2>
                   <ShowBirdData birdData={limitedData}/>
                   <FirestoneData birdData={limitedData}/>
             </div>
-        ): (<p className="text-slate-700">Loading...</p>)
+        ): (<p className="text-slate-700 my-8">Loading Birds...</p>)
         }
 
     </div>

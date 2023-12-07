@@ -12,6 +12,7 @@
 
 .bird-list {
     /* width: 80vw; */
+    max-height: 60vh;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     background: linear-gradient(180deg, rgba(237,237,237,0) 80%, rgba(214, 214, 214, 0.29597776610644255) 100%);
@@ -22,21 +23,17 @@
 }
 
 .bird-fact {
-    margin-top: -13em;
     font-family: 'Yantramanav', sans-serif;
-    border-radius: 5px;
-    max-height: 85vh
+    max-height: 80vh
 }
 
 ::-webkit-scrollbar {
-    scrollbar-color: orange;
-    border-radius: 10px;
-    width: 7px;
-    height: 2px;
+    /* color: #1B7A9E; */
+    /* height: 1em */
 }
 
 @media (orientation: portrait) {
-    .bird-data-container h2 {
+    /* .bird-data-container h2 {
         width: 90%;
     }
 
@@ -50,5 +47,5 @@
 
     .bird-image {
         max-width: 90%;
-    }
+    } */
 }

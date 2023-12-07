@@ -95,14 +95,14 @@ const RegionSelection: FC<RegionSelectionProps> = ({onSelect}) => {
     }, [selectedLocation])
 
     return (
-        <div className="region-dropdown flex flex-col shadow-md min-w-sm max-w-min">
-            <select className="text-base px-8 py-0" name="countries" value={selectedCountry} onChange={handleCountryChange}>
+        <div className="region-dropdown text-center flex flex-col sm:flex-row sm:justify-start items-center sm:items-start gap-2 ">
+            <select className="bg-sky-100 text-lg h-10 px-5 py-0 w-60 rounded-md shadow-sm " name="countries" value={selectedCountry} onChange={handleCountryChange}>
                 <option value="none">Please select a country</option>
                 {countries.map((country) => (
                     <option key={country.abbreviation} value={country.abbreviation}>{country.name}</option>
                 ))}
             </select>
-                {regions && <select className="text-base px-8 py-0" name="regions" onChange={handleSelectChange}>
+                {regions && <select className="bg-sky-100 h-10 text-lg px-5 py-0 w-60 rounded-md shadow-sm " name="regions" onChange={handleSelectChange}>
                     <option value="none">Please select a region</option>
                     {regions.map((region: Region) => (
                         <option key={region.abbreviation} value={region.name}>{region.name}</option>
