@@ -78,7 +78,7 @@ const firebaseConfig = {
           <div className="main-container flex flex-col items-center sm:items-start sm:content-center sm:px-10">
             <div className="header text-center sm:text-left">
               <h3 className="text-3xl font-medium mt-10 mb-2 sm:ml-1">Birds of Today!</h3>
-              <p className="max-w-md sm: max-w-3xl mb-5 px-5 sm:px-1">Discover recently seen birds in any region of the world! Courtesy of Cornell eBird and Wikipedia.</p>
+              <p className="max-w-md sm: max-w-3xl mb-5 px-5 sm:px-1">Discover recently seen birds in any region of the world. Courtesy of Cornell eBird and Wikipedia.</p>
             </div>
               <div className="message z-10"> <LoggedInInfo /></div> 
             </div>
